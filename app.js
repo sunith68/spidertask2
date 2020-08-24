@@ -31,6 +31,7 @@ function assignQuestion(n){
 	optionc.innerText=questions[n].options.c;
 	optiond.innerText=questions[n].options.d;
 	color(response[current]);
+	hovering();
 }
 
 function selectOption(res){
@@ -61,6 +62,16 @@ function color(res){
 	else if(res!=questions[current].answer&&res!=undefined){
 		document.getElementById(temp).style.backgroundColor='red';
 	}
+}
+
+function hovering(){
+	console.log(status[current]);
+	document.querySelectorAll('.opt').forEach(function(y){
+		y.classList.remove('hover');	
+		if(status[current]==undefined){
+			y.classList.add('hover');
+		}
+	})
 }
 
 next.addEventListener('click',()=>{
