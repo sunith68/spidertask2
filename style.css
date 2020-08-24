@@ -3,18 +3,29 @@
 	padding: 0;
 	box-sizing: border-box;
 }
+body {
+  background-image: url("covid19.png");
+  background-size: 100px;
+  background-repeat: repeat;
+  background-color: #fff;
+}
 #heading{
+	font-family: 'Concert One', cursive;
+	font-size: 40px;
 	text-align: center;
-	padding: 10px;
-	background: #206020;
+	padding: 15px;
+	padding-bottom: 20px;
+	background: #660000;
 	color: white;
 }
 #card{
 	width: 70vw;
-	padding: 5px;
+	padding: 30px 10px;
 	margin: auto;	
-	margin-top: 20px;
-	border: 2px solid black;
+	margin-top: 40px;
+	border: 2px solid #330000;
+	border-radius: 10px;
+	background: white;
 }
 #card h6{
 	font-size: 20px;
@@ -25,6 +36,10 @@
 	font-size: 40px;
 	text-align: center;
 	margin-bottom: 20px;
+}
+#questiontxt{
+	font-size: 20px;
+	margin-bottom:10px;
 }
 .opt{
 	display: inline-block;
@@ -40,7 +55,7 @@
 	color:#fff ;
 }
 #optiona{
-
+	margin-bottom: 15px;
 }
 #optionb{
 	float: right;
