@@ -85,7 +85,7 @@ previous.addEventListener('click',()=>{
 finish.addEventListener('click',()=>{
 	card.innerHTML=`<h6>Your Score Is...<h6>`;
 	card.innerHTML+=`<h5>${score}</h5>`;
-	car.innerHTML+=`<span id="retry" class="qbtn">Retry?</span>`;
+	card.innerHTML+=`<span id="retry" class="qbtn">Retry?</span>`;
 	document.getElementById('retry').addEventListener('click',()=>{location.reload();})
 })
 
