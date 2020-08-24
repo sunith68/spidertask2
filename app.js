@@ -21,10 +21,10 @@ function start(){
 function assignQuestion(n){
 	if(current==0){
 		previous.style.display='none';
-	}else{previous.style.display='inline';}
+	}else{previous.style.display='inline-block';}
 	if(current==9){
 		next.style.display='none';
-	}else{next.style.display='inline';}
+	}else{next.style.display='inline-block';}
 	questiontxt.innerText=questions[n].question;
 	optiona.innerText=questions[n].options.a;
 	optionb.innerText=questions[n].options.b;
@@ -47,6 +47,7 @@ function selectOption(res){
 		response[current]=res;
 	}	
 	color(res);
+	hovering();
 }
 
 function color(res){
@@ -65,7 +66,6 @@ function color(res){
 }
 
 function hovering(){
-	console.log(status[current]);
 	document.querySelectorAll('.opt').forEach(function(y){
 		y.classList.remove('hover');	
 		if(status[current]==undefined){
@@ -85,6 +85,8 @@ previous.addEventListener('click',()=>{
 finish.addEventListener('click',()=>{
 	card.innerHTML=`<h6>Your Score Is...<h6>`;
 	card.innerHTML+=`<h5>${score}</h5>`;
+	car.innerHTML+=`<span id="retry" class="qbtn">Retry?</span>`;
+	document.getElementById('retry').addEventListener('click',()=>{location.reload();})
 })
 
 optiona.addEventListener('click',()=>{selectOption('a')});
