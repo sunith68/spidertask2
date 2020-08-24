@@ -63,13 +63,17 @@ function color(res){
 	}
 }
 
-next.addEventListener('click',function(){
+next.addEventListener('click',()=>{
 	current++;
 	assignQuestion(current);	
 })
-previous.addEventListener('click',function(){
+previous.addEventListener('click',()=>{
 	current--;
 	assignQuestion(current);	
+})
+finish.addEventListener('click',()=>{
+	card.innerHTML=`<h6>Your Score Is...<h6>`;
+	card.innerHTML+=`<h5>${score}</h5>`;
 })
 
 optiona.addEventListener('click',()=>{selectOption('a')});
