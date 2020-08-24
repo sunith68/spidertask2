@@ -4,7 +4,7 @@ var questions=[
 	options:{
 		a:'Wuhan, China on January 2020',
 		b:'Tokyo,Japan on October 2019',
-		c:'Wuhan, China on December 2020',
+		c:'Wuhan, China on December 2019',
 		d:"New Delhi, India on April 2020 "
 	},
 	answer:'c'

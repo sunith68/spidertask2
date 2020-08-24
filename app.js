@@ -29,33 +29,52 @@ function assignQuestion(n){
 	optiona.innerText=questions[n].options.a;
 	optionb.innerText=questions[n].options.b;
 	optionc.innerText=questions[n].options.c;
-	optiond.innerText=questions[n].options.d;			
+	optiond.innerText=questions[n].options.d;
+	color(response[current]);
 }
 
 function selectOption(res){
-	response[current]=res;
+	if(status[current]!=undefined){return 0}
+	response[current]=res;	
 	if(questions[current].answer==res){
 		status[current]=true;
+		score++;
+		response[current]=res;
 	}
 	else{
 		status[current]=false;
+		response[current]=res;
+	}	
+	color(res);
+}
+
+function color(res){
+	let temp='option'
+	document.getElementById(temp+'a').style.backgroundColor='';
+	document.getElementById(temp+'b').style.backgroundColor='';
+	document.getElementById(temp+'c').style.backgroundColor='';
+	document.getElementById(temp+'d').style.backgroundColor='';
+	temp+=res;
+	if(res==questions[current].answer){
+		document.getElementById(temp).style.backgroundColor='green';
+	}
+	else if(res!=questions[current].answer&&res!=undefined){
+		document.getElementById(temp).style.backgroundColor='red';
 	}
 }
 
 next.addEventListener('click',function(){
 	current++;
-	assignQuestion(current);
-	
+	assignQuestion(current);	
 })
 previous.addEventListener('click',function(){
 	current--;
-	assignQuestion(current);
-	
+	assignQuestion(current);	
 })
+
 optiona.addEventListener('click',()=>{selectOption('a')});
 optionb.addEventListener('click',()=>{selectOption('b')});
 optionc.addEventListener('click',()=>{selectOption('c')});
 optiond.addEventListener('click',()=>{selectOption('d')});
-
 
 
