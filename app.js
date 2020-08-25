@@ -15,6 +15,7 @@ let introduction=document.getElementById('introduction');
 
 let current=0;
 let response=[];
+let order=[];
 let status=[];
 let score=0;
 let player='';
@@ -26,6 +27,19 @@ function initialize(){
 	name.defaultValue=player;
 }
 
+function shuffle() {
+	let temp,rand;
+	for (var i = 0; i < 10; i++) {
+		order[i]=i;
+		}
+	for (var i = 9; i >= 0; i--) {
+		rand= Math.floor(Math.random() * i);
+		temp=order[i];
+		order[i]=order[rand];
+		order[rand]=temp;
+	}
+}
+
 startbtn.addEventListener('click',start)
 function start(){
 	console.log(name.value);
@@ -33,10 +47,13 @@ function start(){
 		document.getElementById('error').innerText="Name cannot be empty";
 		return 0;
 	}
-	assignQuestion(current);
+	shuffle();
+	assignQuestion(order[current]);
 	player=name.value;
 	introduction.style.display='none';
 	qholder.style.display='block';
+	
+	console.log(order);
 }
 
 function assignQuestion(n){
@@ -78,10 +95,10 @@ function color(res){
 	document.getElementById(temp+'c').style.backgroundColor='';
 	document.getElementById(temp+'d').style.backgroundColor='';
 	temp+=res;
-	if(res==questions[current].answer){
+	if(res==questions[order[current]].answer){
 		document.getElementById(temp).style.backgroundColor='green';
 	}
-	else if(res!=questions[current].answer&&res!=undefined){
+	else if(res!=questions[order[current]].answer&&res!=undefined){
 		document.getElementById(temp).style.backgroundColor='red';
 	}
 }
@@ -97,11 +114,11 @@ function hovering(){
 
 next.addEventListener('click',()=>{
 	current++;
-	assignQuestion(current);	
+	assignQuestion(order[current]);	
 })
 previous.addEventListener('click',()=>{
 	current--;
-	assignQuestion(current);	
+	assignQuestion(order[current]);	
 })
 finish.addEventListener('click',()=>{
 	card.innerHTML=`<h6>${player}, your Score Is...<h6>`;
