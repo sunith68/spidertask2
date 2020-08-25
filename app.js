@@ -7,15 +7,36 @@ let optiond=document.getElementById('optiond');
 let next=document.getElementById('next');
 let previous=document.getElementById('previous');
 let finish=document.getElementById('finish');
+let startbtn=document.getElementById('startbtn');
+let name=document.getElementById('name');
+let qholder=document.getElementById('qholder');
+let introduction=document.getElementById('introduction');
+
 
 let current=0;
 let response=[];
 let status=[];
 let score=0;
+let player='';
 
-start();
+initialize();
+function initialize(){
+	qholder.style.display='none';
+	introduction.style.display='block';
+	name.defaultValue=player;
+}
+
+startbtn.addEventListener('click',start)
 function start(){
+	console.log(name.value);
+	if (name.value=='') {
+		document.getElementById('error').innerText="Name cannot be empty";
+		return 0;
+	}
 	assignQuestion(current);
+	player=name.value;
+	introduction.style.display='none';
+	qholder.style.display='block';
 }
 
 function assignQuestion(n){
@@ -83,7 +104,7 @@ previous.addEventListener('click',()=>{
 	assignQuestion(current);	
 })
 finish.addEventListener('click',()=>{
-	card.innerHTML=`<h6>Your Score Is...<h6>`;
+	card.innerHTML=`<h6>${player}, your Score Is...<h6>`;
 	card.innerHTML+=`<h5>${score}</h5>`;
 	card.innerHTML+=`<span id="retry" class="qbtn">Retry?</span>`;
 	document.getElementById('retry').addEventListener('click',()=>{location.reload();})
