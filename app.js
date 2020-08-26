@@ -25,9 +25,11 @@ let wrong=0;
 let score=0;
 let player='';
 let timer;
-let finaltime=30;
+let finaltime=60;
+let navclick=false;
 
 initialize();
+
 function initialize(){
 	qholder.style.display='none';
 	introduction.style.display='block';
@@ -41,7 +43,8 @@ function initialize(){
 	correct=0;
 	wrong=0;
 	score=0;
-	finaltime=30;
+	finaltime=60;
+	navclick=false;
 }
 
 function shuffle() {
@@ -69,12 +72,11 @@ function start(){
 	introduction.style.display='none';
 	qholder.style.display='block';
 	document.querySelectorAll('.icon').forEach((icon)=>{
-		icon.classList.add('navigate');
-
+		icon.classList.add('navigate');							//for hover in navbar
 	})		
-	navigationEvent();
 	navbarColor();
-	time.innerText='30';
+	navclick=true
+	time.innerText='60';
 	timer = setInterval(updateTime, 1000);
 }
 
@@ -148,14 +150,15 @@ function hovering(){
 	})
 }
 
-function navigationEvent(){
-	document.querySelectorAll('.navigate').forEach((nav)=>{
-		nav.addEventListener('click',()=>{
+document.querySelectorAll('.icon').forEach((nav)=>{
+	nav.addEventListener('click',()=>{
+		if (navclick==true){
 			current=parseInt(nav.innerText)-1;
-			assignQuestion(order[current]);
-		})
+			assignQuestion(order[current]);		
+		}
 	})
-}
+})
+
 
 function navbarColor(){
 	document.querySelectorAll('.icon').forEach((nav)=>{
@@ -176,7 +179,7 @@ function navbarColor(){
 }
 
 function calculateScore(){
-	score=(5*correct) - (2*wrong) + (finaltime/2);
+	score=(5*correct) - (2*wrong) + (finaltime/4);
 }
 
 function highscore(){
@@ -202,6 +205,7 @@ function submitQuiz(){
 	document.querySelectorAll('.icon').forEach((icon)=>{
 		icon.classList.remove('navigate');
 	})
+	navclick=false;
 	qholder.style.display='none';
 	results.style.display='block';
 	clearInterval(timer);
@@ -211,19 +215,10 @@ function submitQuiz(){
 	results.innerHTML+=`<h5>${score}</h5>`;
 	results.innerHTML+=`<h6>High Score : ${localStorage.getItem('highscore')}</h6>`
 	results.innerHTML+=`<h4>High score by ${localStorage.getItem('name')} on ${localStorage.getItem('datetime')}</h4>`
-	results.innerHTML+=`<span id="retry" class="qbtn">Retry?</span>`;
+	results.innerHTML+=`<span id="retry" class="btn">Retry?</span>`;
 	document.getElementById('retry').addEventListener('click',()=>{
-		current=0;
-		response=[];
-		order=[];
-		status=[];
-		visited=[];
-		correct=0;
-		wrong=0;
-		score=0;
-		finaltime=30;
-		navbarColor();
 		initialize();
+		navbarColor();
 	})
 }
 

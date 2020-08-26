@@ -73,12 +73,12 @@ body {
 #options{
 	margin-bottom: 15px;
 }
-.qbtn{
+.btn{
 	padding:3px;
 	border: 1px solid black;
 	border-radius: 3px;
 }
-.qbtn:hover{
+.btn:hover{
 	cursor: pointer;
 }
 #navigationbar{
@@ -105,7 +105,7 @@ body {
 }
 #navtxt{
 	margin-bottom: 20px;
-	font-size: 18px;
+	font-size: 20px;
 }
 input{
 	padding: 3px;
