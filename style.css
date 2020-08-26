@@ -1,7 +1,6 @@
 *{
 	margin: 0;
 	padding: 0;
-	box-sizing: border-box;
 }
 body {
   background-image: url("covid19.png");
@@ -20,7 +19,7 @@ body {
 }
 #card{
 	width: 70vw;
-	padding: 30px 10px;
+	padding: 20px 15px;
 	margin: auto;	
 	margin-top: 40px;
 	border: 2px solid #330000;
@@ -30,13 +29,17 @@ body {
 #card h6{
 	font-size: 20px;
 	text-align: center;
-	padding: 15px;
+	padding: 10px;
 }
 #card h5{
 	font-size: 40px;
 	text-align: center;
-	margin-bottom: 20px;
+	margin-bottom: 10px;
 }
+#card h4{
+	text-align:center;
+	margin-bottom: 10px;
+} 
 #questiontxt{
 	font-size: 20px;
 	margin-bottom:10px;
@@ -110,4 +113,14 @@ input{
 #startbtn{
 	padding: 3px;
 	margin-left: 5px;
+}
+#name{
+	width: 30vw;
+}
+#instructions{
+	margin-bottom: 10px;
+}
+#error{
+	color:#cc0000 ;
+	margin-bottom: 2px;
 }

@@ -9,11 +9,20 @@
 	<h2 id='heading'>Quizz..</h2>
 	<div id="card">
 		<div id='introduction'>
+			<div id='instructions'>
+				White: Not Visited<br>
+				Blue: Visited <br>
+				Green: Correct <br>
+				Red: Wrong <br>
+				Scoring system: <br>
+				Score = 5*correct - 2*wrong + (time left/2)
+			</div>
 			<div id='error'></div>
-			<input type="text" id="name" required>
-			<button id='startbtn'>Start</button>
+			<input type="text" id="name" >
+			<span id='startbtn' class="qbtn">Start</span>
 		</div>
 		<div id='qholder'>
+			<div id='time'>30</div>
 			<div id='questiontxt'></div>
 			<div id='options'>
 				<span id='optiona' class='opt hover'></span>
@@ -23,10 +32,11 @@
 			</div>
 			<div>
 				<span id='previous' class='qbtn'>Previous</span>
-				<span id='finish' class='qbtn'>Finish</span>
+				<span id='submit' class='qbtn'>Finish</span>
 				<span id='next' class='qbtn'>Next</span>
 			</div>
 		</div>
+		<div id='results'></div>
 	</div>
 	<div id="navigationbar">
 		<div id='navtxt'>Navigation Bar</div>
