@@ -17,6 +17,7 @@ let current=0;
 let response=[];
 let order=[];
 let status=[];
+let visited=[];
 let score=0;
 let player='';
 
@@ -42,7 +43,6 @@ function shuffle() {
 
 startbtn.addEventListener('click',start)
 function start(){
-	console.log(name.value);
 	if (name.value=='') {
 		document.getElementById('error').innerText="Name cannot be empty";
 		return 0;
@@ -52,8 +52,12 @@ function start(){
 	player=name.value;
 	introduction.style.display='none';
 	qholder.style.display='block';
-	
-	console.log(order);
+	document.querySelectorAll('.icon').forEach((icon)=>{
+		icon.classList.add('navigate');
+
+	})		
+	navigationEvent();
+	navbarColor();
 }
 
 function assignQuestion(n){
@@ -70,12 +74,14 @@ function assignQuestion(n){
 	optiond.innerText=questions[n].options.d;
 	color(response[current]);
 	hovering();
+	visited[current]=true;
+	navbarColor();
 }
 
 function selectOption(res){
 	if(status[current]!=undefined){return 0}
 	response[current]=res;	
-	if(questions[current].answer==res){
+	if(questions[order[current]].answer==res){
 		status[current]=true;
 		score++;
 		response[current]=res;
@@ -86,6 +92,7 @@ function selectOption(res){
 	}	
 	color(res);
 	hovering();
+	navbarColor();
 }
 
 function color(res){
@@ -104,11 +111,40 @@ function color(res){
 }
 
 function hovering(){
-	document.querySelectorAll('.opt').forEach(function(y){
+	document.querySelectorAll('.opt').forEach((y)=>{
 		y.classList.remove('hover');	
 		if(status[current]==undefined){
 			y.classList.add('hover');
 		}
+	})
+}
+
+function navigationEvent(){
+	document.querySelectorAll('.navigate').forEach((nav)=>{
+		nav.addEventListener('click',()=>{
+			current=parseInt(nav.innerText)-1;
+			assignQuestion(order[current]);
+		})
+	})
+}
+
+function navbarColor(){
+	document.querySelectorAll('.icon').forEach((nav)=>{
+		let temp=parseInt(nav.innerText)-1;
+		if(status[temp]==true){
+			nav.style.backgroundColor='green';
+		}
+		else if(status[temp]==false){
+			console.log(temp);
+			console.log(status[temp]);
+			nav.style.backgroundColor='red';
+		}
+		else if(visited[temp]==true){
+			nav.style.backgroundColor='blue';
+		}
+		else{
+			nav.style.backgroundColor='';
+		}		
 	})
 }
 
@@ -121,6 +157,9 @@ previous.addEventListener('click',()=>{
 	assignQuestion(order[current]);	
 })
 finish.addEventListener('click',()=>{
+	document.querySelectorAll('.icon').forEach((icon)=>{
+		icon.classList.remove('navigate');
+	})
 	card.innerHTML=`<h6>${player}, your Score Is...<h6>`;
 	card.innerHTML+=`<h5>${score}</h5>`;
 	card.innerHTML+=`<span id="retry" class="qbtn">Retry?</span>`;

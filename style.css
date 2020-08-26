@@ -78,3 +78,36 @@ body {
 .qbtn:hover{
 	cursor: pointer;
 }
+#navigationbar{
+	width: 60vw;
+	padding: 10px 20px;
+	margin: auto;	
+	margin-top: 40px;
+	border: 2px solid #330000;
+	border-radius: 10px;
+	background: white;
+	text-align: center;	
+}
+.icon{
+	display: inline-block;
+	width: 10vw;
+	margin-bottom: 10px;
+	padding: 8px 2px;
+	font-size: 18px;
+	border: 2px solid #330000;
+	border-radius: 10px;
+}
+.navigate:hover{
+	cursor: pointer;
+}
+#navtxt{
+	margin-bottom: 20px;
+	font-size: 18px;
+}
+input{
+	padding: 3px;
+}
+#startbtn{
+	padding: 3px;
+	margin-left: 5px;
+}
